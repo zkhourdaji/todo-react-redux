@@ -1,26 +1,78 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import NewTodo from './NewTodo';
+import TodoList from './TodoList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [],
+      todo: ''
+    };
+    this.handleNewTodo = this.handleNewTodo.bind(this);
+    this.handleTodoChange = this.handleTodoChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  getNewId = () => {
+    const { todos } = this.state;
+    return todos[todos.length - 1].id + 1;
+  }
+
+  handleNewTodo() {
+
+    const { todos, todo } = this.state;
+
+    this.setState({
+      todos: [
+        ...todos,
+        {
+          name: todo,
+          id: todos.length === 0 ? 0 : this.getNewId()
+        }
+      ]
+    });
+  }
+
+  handleTodoChange(event) {
+    this.setState({ todo: event.target.value });
+  }
+
+  handleDelete(id) {
+    this.setState({
+      todos: this.state.todos.filter(todo => todo.id !== id)
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <NewTodo
+          addNewTodo={this.handleNewTodo}
+          todo={this.state.todo}
+          handleChange={this.handleTodoChange}
+        />
+        <TodoList
+          todos={this.props.todos}
+        />
+      </div>
+    );
+  }
 }
 
-export default App;
+// called everytime the store changes
+const mapStateToProps = (state, ownProps) => ({
+  todos: state.todos
+});
+
+
+const connectToStore = connect(mapStateToProps, null);
+
+const connectedComponenet = connectToStore(App);
+
+
+
+export default connectedComponenet;
