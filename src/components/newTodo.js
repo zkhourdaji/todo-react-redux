@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { addTodoAction } from '../redux/actionsCreators'
 
 class NewTodo extends Component {
 
@@ -13,7 +14,12 @@ class NewTodo extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.addTodo(this.state.todo);
+        // make sure its not an empty todo
+        if (this.state.todo){
+            this.props.addTodo(this.state.todo);
+            this.setState({todo: ''});
+        }
+   
     }
 
     handleChange(event) {
@@ -39,19 +45,8 @@ class NewTodo extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addTodo: (name) => {
-            dispatch(
-                {
-                    type: 'ADD_TODO',
-                    payload: {
-                        name
-                    }
-                }
-            );
-        }
-    };
-};
+const mapDispatchToProps = (dispatch) => ({
+    addTodo: (name) => dispatch(addTodoAction(name))
+})
 
 export default connect(null, mapDispatchToProps)(NewTodo);
