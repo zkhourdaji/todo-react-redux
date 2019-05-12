@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { addTodoAction } from '../redux/actionsCreators'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class NewTodo extends Component {
 
@@ -15,11 +17,11 @@ class NewTodo extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         // make sure its not an empty todo
-        if (this.state.todo){
+        if (this.state.todo) {
             this.props.addTodo(this.state.todo);
-            this.setState({todo: ''});
+            this.setState({ todo: '' });
         }
-   
+
     }
 
     handleChange(event) {
@@ -28,18 +30,16 @@ class NewTodo extends Component {
 
     render() {
         return (
-            <form
-                onSubmit={(event) => this.handleSubmit(event)}
-            >
-                <input
-                    type='text'
-                    value={this.state.todo}
-                    onChange={(event) => this.handleChange(event)}
-                />
-                <button>
-                    Add
-          </button>
-            </form>
+            <Form onSubmit={(event) => this.handleSubmit(event)}>
+                <Form.Group>
+                    <Form.Label>Add New Todo</Form.Label>
+                    <Form.Control type='text'
+                        value={this.state.todo}
+                        onChange={(event) => this.handleChange(event)}>
+                    </Form.Control>
+                </Form.Group>
+                <Button variant='primary' type='submit'>Add</Button>
+            </Form>
         );
 
     }

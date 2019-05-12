@@ -1,29 +1,34 @@
 import { connect } from "react-redux";
 import React from 'react';
 import { completeTodoAction, deleteTodoAction } from "../redux/actionsCreators";
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const TodoList = (props) => {
     return (
-        <ul>
+        <ListGroup className='mt-4'>
             {
-                props.notCompleted.map((todo) => <Todo
+                props.notCompleted.map(todo => <Todo
                     key={todo.id}
                     todo={todo}
                     complete={props.complete}
                     delete={props.delete}
                 />)
             }
-        </ul>
+        </ListGroup>
     );
 }
 
 const Todo = (props) => {
     return (
-        <li>
+        <ListGroup.Item>
             {props.todo.name}
-            <button onClick={() => props.complete(props.todo.id)}>Complete</button>
-            <button onClick={() => props.delete(props.todo.id)}>Delete</button>
-        </li>
+            <ButtonGroup className='ml-5'>
+                <Button variant='success' onClick={() => props.complete(props.todo.id)}>Complete</Button>
+                <Button variant='danger' onClick={() => props.delete(props.todo.id)}>Delete</Button>
+            </ButtonGroup>
+        </ListGroup.Item>
     )
 }
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class EventForm extends Component {
 
@@ -22,6 +24,7 @@ class EventForm extends Component {
 
 
     handleChange(event) {
+        console.log(event.target);
         switch (event.target.name) {
             case 'title':
                 this.setState({ title: event.target.value });
@@ -42,29 +45,48 @@ class EventForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Event Title:
-                        <input type='text' name='title' onChange={this.handleChange} value={this.state.title} />
-                </label>
-                <br />
-                <label>
-                    Event Date:
-                        <input type='date' name='date' onChange={this.handleChange} value={this.state.date} />
-                </label>
-                <br />
-                <label>
-                    Event start time:
-                        <input type='time' name='from' onChange={this.handleChange} value={this.state.from} />
-                </label>
-                <br />
-                <label>
-                    Event end time:
-                        <input type='time' name='to' onChange={this.handleChange} value={this.state.to} />
-                </label>
-                <br />
-                <button>Add Event</button>
-            </form >
+            <Form onSubmit={this.handleSubmit}>
+                <Form.Group>
+                    <Form.Label>Event Title: </Form.Label>
+                    <Form.Control
+                        onChange={this.handleChange}
+                        type='text'
+                        name='title'
+                        value={this.state.title} />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Event Date: </Form.Label>
+                    <Form.Control
+                        onChange={this.handleChange}
+                        type='date'
+                        name='date'
+                        value={this.state.date}
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Event start time: </Form.Label>
+                    <Form.Control
+                        onChange={this.handleChange}
+                        type='time'
+                        name='from'
+                        value={this.state.from}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Event end time: </Form.Label>
+                    <Form.Control 
+                        onChange={this.handleChange}
+                        type='time'
+                        name='from'
+                        value={this.state.to}
+                    />
+                </Form.Group>
+                <Button variant='primary' type='submit'>
+                    Add Event
+                </Button>
+            </Form>
         );
     }
 
