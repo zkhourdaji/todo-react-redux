@@ -2,87 +2,35 @@ import React from 'react';
 import { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Field, reduxForm } from 'redux-form';
 
 class EventForm extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: '',
-            date: '',
-            from: '',
-            to: ''
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        this.props.addEvent(this.state);
-    }
-
-
-    handleChange(event) {
-        console.log(event.target);
-        switch (event.target.name) {
-            case 'title':
-                this.setState({ title: event.target.value });
-                break;
-            case 'date':
-                this.setState({ date: event.target.value });
-                break;
-            case 'from':
-                this.setState({ from: event.target.value });
-                break;
-            case 'to':
-                this.setState({ to: event.target.value });
-                break;
-            default:
-                break;
-        }
-    }
-
     render() {
+        const submit = values => this.props.addEvent(values)
         return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.props.handleSubmit(submit)}>
+
                 <Form.Group>
                     <Form.Label>Event Title: </Form.Label>
-                    <Form.Control
-                        onChange={this.handleChange}
-                        type='text'
-                        name='title'
-                        value={this.state.title} />
+                    <Field className='form-control' name='title' component='input' type='text' />
                 </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Event Date: </Form.Label>
-                    <Form.Control
-                        onChange={this.handleChange}
-                        type='date'
-                        name='date'
-                        value={this.state.date}
-                    />
+                    <Field className='form-control' name='date' type='date' component='input' />
                 </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Event start time: </Form.Label>
-                    <Form.Control
-                        onChange={this.handleChange}
-                        type='time'
-                        name='from'
-                        value={this.state.from}
-                    />
+                    <Field className='form-control' name='from' type='time' component='input' />
                 </Form.Group>
+
                 <Form.Group>
                     <Form.Label>Event end time: </Form.Label>
-                    <Form.Control 
-                        onChange={this.handleChange}
-                        type='time'
-                        name='from'
-                        value={this.state.to}
-                    />
+                    <Field className='form-control' name='to' type='time' component='input' />
                 </Form.Group>
+
                 <Button variant='primary' type='submit'>
                     Add Event
                 </Button>
@@ -92,4 +40,7 @@ class EventForm extends Component {
 
 };
 
-export default EventForm;
+const EventReduxForm = reduxForm({
+    form: 'eventForm'
+})(EventForm);
+export default EventReduxForm;

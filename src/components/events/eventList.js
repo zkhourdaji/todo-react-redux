@@ -6,7 +6,12 @@ const EventsList = (props) => {
         <ListGroup className='mt-3'>
             {
                 props.events.map(event =>
-                    <ListGroup.Item key={event.id}>{event.title}</ListGroup.Item>)
+                    <ListGroup.Item
+                        key={event.id}
+                    >
+                        <strong>{event.title}</strong> Date: {event.date} Time: {event.from}-{event.to}
+                    </ListGroup.Item>
+                )
             }
         </ListGroup>
     );

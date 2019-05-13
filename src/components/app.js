@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './home'
-import CompletedTodos from '../todos/completedTodos';
+import CompletedTodos from './todos/completedTodos';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteTodoAction } from '../redux/actionsCreators';

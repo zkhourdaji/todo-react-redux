@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { addTodoAction } from '../redux/actionsCreators'
+import { addTodoAction } from '../../redux/actionsCreators'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -25,6 +25,7 @@ class NewTodo extends Component {
     }
 
     handleChange(event) {
+        console.log(event.target);
         this.setState({ todo: event.target.value })
     }
 
@@ -49,4 +50,15 @@ const mapDispatchToProps = (dispatch) => ({
     addTodo: (name) => dispatch(addTodoAction(name))
 })
 
-export default connect(null, mapDispatchToProps)(NewTodo);
+const mapStateToProps = (state) => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTodo);
+
+// state = {
+//     todos: {
+//         completed: [],
+//         notCompleted: [],
+//     },
+//     events: []
+// }

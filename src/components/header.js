@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import React from 'react';
 import {Route} from 'react-router-dom';
 
-const header = () => (
+const header = (props) => (
     <Navbar bg='light'>
         <Container>
             <Nav>

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import React from 'react';
-import { completeTodoAction, deleteTodoAction } from "../redux/actionsCreators";
+import { completeTodoAction, deleteTodoAction } from "./../../redux/actionsCreators";
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
