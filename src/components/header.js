@@ -16,6 +16,7 @@ const header = (props) => (
                             <Nav.Link href='completed'>Completed Todos</Nav.Link>
                         }
                     />
+                    <Nav.Link href='phonebook'>Phonebook</Nav.Link>
             </Nav>
         </Container>
     </Navbar>

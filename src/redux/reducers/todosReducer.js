@@ -1,9 +1,7 @@
-import { ADD_TODO, DELETE_TODO, COMPLETE_TODO, ADD_EVENT } from './actionNames';
-import { combineReducers } from 'redux';
-import {reducer as formReducer} from 'redux-form';
+import {ADD_TODO, DELETE_TODO, COMPLETE_TODO} from './../actionNames';
+
 
 function todosReducer(todos = {}, action) {
-
     const { completed = [], notCompleted = [] } = todos;
     switch (action.type) {
         case ADD_TODO:
@@ -30,22 +28,7 @@ function todosReducer(todos = {}, action) {
         default:
             return todos;
     }
-}
+};
 
-function eventsReducer(events = [], action) {
-    switch (action.type) {
-        case ADD_EVENT:
-            const lastEvent = events[events.length - 1];
-            const newId = lastEvent ? lastEvent.id + 1 : 0;
-            const event = { ...action.payload.event, id: newId };
-            return [...events, event];
-        default:
-            return events;
-    }
-}
-const rootReducer = combineReducers({
-    todos: todosReducer,
-    events: eventsReducer,
-    form: formReducer
-});
-export default rootReducer;
+
+export default todosReducer;

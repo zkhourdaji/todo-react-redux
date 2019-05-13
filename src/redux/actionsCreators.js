@@ -1,7 +1,7 @@
-import { ADD_TODO, COMPLETE_TODO, DELETE_TODO, RESET_STATE, ADD_EVENT } from './actionNames';
+import  * as actionNames from './actionNames';
 
 const addTodoAction = (name) => ({
-    type: ADD_TODO,
+    type: actionNames.ADD_TODO,
     payload: {
         name
     }
@@ -10,7 +10,7 @@ const addTodoAction = (name) => ({
 
 const completeTodoAction = (id) => (
     {
-        type: COMPLETE_TODO,
+        type: actionNames.COMPLETE_TODO,
         payload: {
             id
         }
@@ -19,7 +19,7 @@ const completeTodoAction = (id) => (
 
 const deleteTodoAction = (id) => (
     {
-        type: DELETE_TODO,
+        type: actionNames.DELETE_TODO,
         payload: {
             id
         }
@@ -27,13 +27,20 @@ const deleteTodoAction = (id) => (
 );
 
 const resetStateAction = () => ({
-    type: RESET_STATE
+    type: actionNames.RESET_STATE
 });
 
-const addEvent = (event) => ({
-    type: ADD_EVENT,
+const addEvent = event => ({
+    type: actionNames.ADD_EVENT,
     payload: {
         event
+    }
+});
+
+const addContactAction = contact => ({
+    type: actionNames.ADD_CONTACT,
+    payload: {
+        contact
     }
 });
 
@@ -42,5 +49,6 @@ export {
     completeTodoAction, 
     deleteTodoAction, 
     resetStateAction,
-    addEvent
+    addEvent,
+    addContactAction
 };

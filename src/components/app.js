@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { deleteTodoAction } from '../redux/actionsCreators';
 import Events from './events/events';
 import Container from 'react-bootstrap/Container';
-import Header from './header'
+import Header from './header';
+import Phonebook from './phonebook';
 
 
 const App = (props) => {
@@ -24,11 +25,11 @@ const App = (props) => {
                             delete={props.delete}
                         />} />
                     <Route exact path='/events' component={Events} />
+                    <Route exact path='/phonebook' component={Phonebook}/>
                 </Switch>
             </Container>
         </BrowserRouter>
     );
-
 }
 
 const mapStateToProps = state => ({

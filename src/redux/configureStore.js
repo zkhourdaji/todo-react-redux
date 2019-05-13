@@ -1,4 +1,4 @@
-import rootReducer from './reducer';
+import rootReducer from './reducers';
 import {createStore, applyMiddleware} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -18,7 +18,8 @@ const initialState = {
         completed: [],
         notCompleted: []
     },
-    events:[]
+    events:[],
+    phonebook: []
 }
 const store = createStore(persistedReducer, initialState, applyMiddleware(logger));
 const persistor = persistStore(store);
