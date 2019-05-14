@@ -51,19 +51,20 @@ const searchJobsAction = keyword => ({
     }
 });
 
-const jobSearchResutlsAction = (json) => ({
+const jobSearchResutlsAction = (jobs) => ({
     type: actionNames.JOB_SEARCH_RESULTS,
     payload:{
-        json
+        jobs
     }
 });
 
-const url = 'https://jobs.github.com/positions.json?description=';
+const url = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=';
 const searchJobsActionAsync = (keyword) => {
     return (dispatch, getState) => {
-        fetch(url + keyword, {mode:'no-cors'})
+        fetch(url + keyword)
             .then(res => res.json())
             .then(json => dispatch(jobSearchResutlsAction(json)))
+            .catch(error => console.log(error));
     }
 }
 

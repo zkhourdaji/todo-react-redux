@@ -8,13 +8,15 @@ const Jobs = (props) => {
     return (
         <>
             <JobSearchForm searchJobs={props.searchJobs}/>
-            <JobResults />
+            <JobResults jobs={props.jobs} />
         </>
     );
    
 };
 
-const mapStateToProps = state =>({});
+const mapStateToProps = state =>({
+    jobs: state.jobs
+});
 
 const mapDispatchToProps = dispatch => ({
     searchJobs: (keyword) => dispatch(searchJobsActionAsync(keyword))
