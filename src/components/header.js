@@ -17,6 +17,7 @@ const header = (props) => (
                         }
                     />
                     <Nav.Link href='phonebook'>Phonebook</Nav.Link>
+                    <Nav.Link href='jobs'>Jobs</Nav.Link>
             </Nav>
         </Container>
     </Navbar>

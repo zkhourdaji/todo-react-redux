@@ -8,6 +8,7 @@ import Events from './events/events';
 import Container from 'react-bootstrap/Container';
 import Header from './header';
 import Phonebook from './phonebook';
+import Jobs from './jobs'
 
 
 const App = (props) => {
@@ -26,6 +27,7 @@ const App = (props) => {
                         />} />
                     <Route exact path='/events' component={Events} />
                     <Route exact path='/phonebook' component={Phonebook}/>
+                    <Route exact path='/jobs' component={Jobs} />
                 </Switch>
             </Container>
         </BrowserRouter>

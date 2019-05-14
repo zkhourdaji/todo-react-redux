@@ -1,4 +1,4 @@
-import  * as actionNames from './actionNames';
+import * as actionNames from './actionNames';
 
 const addTodoAction = (name) => ({
     type: actionNames.ADD_TODO,
@@ -44,11 +44,36 @@ const addContactAction = contact => ({
     }
 });
 
-export { 
-    addTodoAction, 
-    completeTodoAction, 
-    deleteTodoAction, 
+const searchJobsAction = keyword => ({
+    type: actionNames.SEARCH_JOBS,
+    payload: {
+        keyword
+    }
+});
+
+const jobSearchResutlsAction = (json) => ({
+    type: actionNames.JOB_SEARCH_RESULTS,
+    payload:{
+        json
+    }
+});
+
+const url = 'https://jobs.github.com/positions.json?description=';
+const searchJobsActionAsync = (keyword) => {
+    return (dispatch, getState) => {
+        fetch(url + keyword, {mode:'no-cors'})
+            .then(res => res.json())
+            .then(json => dispatch(jobSearchResutlsAction(json)))
+    }
+}
+
+export {
+    addTodoAction,
+    completeTodoAction,
+    deleteTodoAction,
     resetStateAction,
     addEvent,
-    addContactAction
+    addContactAction,
+    searchJobsAction,
+    searchJobsActionAsync
 };
